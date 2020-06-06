@@ -29,7 +29,9 @@ pipeline {
 
             sh '''
 
-            echo $DOCKER_PASSWD | docker login --username 'manojsinghmanoj' --password-stdin ${DOCKER_PASSWD} 
+            echo $DOCKER_PASSWD  
+            
+            docker login --username 'manojsinghmanoj' --password-stdin ${DOCKER_PASSWD} 
 
             docker push docker.io/manojsinghmanoj/helloworld:v24
 
