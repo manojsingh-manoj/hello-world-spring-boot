@@ -1,0 +1,46 @@
+pipeline {
+   agent any
+       stage('Build'){
+
+        steps{
+
+         
+               sh '''
+
+                docker build -t docker.io/manojsinghmanoj/helloworld:latest .
+
+                '''
+
+          
+
+        }
+
+    }
+   
+
+    stage('Publish'){
+
+        steps{
+
+            withCredentials([string(credentialsId: 'dockerhub', variable: 'DOCKER_PASSWD'])
+
+            {
+
+            sh '''
+
+            echo $DOCKER_PASSWD | docker login --username 'manojsinghmanoj' --password-stdin ${DOCKER_PASSWD} 
+
+            docker push docker.io/manojsinghmanoj/myhelloimage:v23
+
+            docker logout
+
+            '''
+
+            }
+
+        }
+
+    }
+
+
+}
