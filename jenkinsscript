@@ -22,7 +22,7 @@ pipeline {
 
         steps{
 
-            withCredentials([string(credentialsId: 'dockerhub', variable: 'DOCKER_PASSWD'])
+            withCredentials([string(credentialsId: 'dockerhub', variable: 'DOCKER_PASSWD')])
 
             {
 
